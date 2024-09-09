@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import axios from "axios";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import { Avatar, Typography } from "@mui/material";
 
 const Home = () => {
     const [position, setPosition] = useState({
@@ -43,12 +44,28 @@ const Home = () => {
     }, [position]); // positionが更新されるたびにgetShopListを実行
 
     return (
-        <div>
+        <div className="max-w-2xl mx-auto">
             {Array.isArray(shopList) &&
                 shopList.map((shop) => (
                     <Card key={shop.id} sx={{ m: 1 }}>
-                        <h1>{shop.name}</h1>
-                        <p>{shop.address}</p>
+                        <CardContent>
+                            <div className="flex">
+                                <Avatar
+                                    src={shop.photo.pc.l}
+                                    alt={`${shop.name}の写真`}
+                                    sx={{ width: 100, height: 100 }}
+                                    className="mr-4"
+                                />
+                                <div>
+                                    <Typography variant="h6">
+                                        {shop.name}
+                                    </Typography>
+                                    <Typography variant="body2">
+                                        {shop.address}
+                                    </Typography>
+                                </div>
+                            </div>
+                        </CardContent>
                     </Card>
                 ))}
         </div>
