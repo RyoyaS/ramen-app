@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
-import { BottomNavigation, BottomNavigationAction } from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import SearchIcon from "@mui/icons-material/Search";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import PersonIcon from "@mui/icons-material/Person";
 import Header from "./components/header";
+import Footer from "./components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,39 +17,12 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body className={inter.className}>
+        <html lang="ja">
+            <body>
                 <Header />
                 {children}
+                <Footer />
             </body>
-            <BottomNavigation className="sticky bottom-0 border-gray-200">
-                <BottomNavigationAction
-                    label="Search"
-                    value="search"
-                    icon={<SearchIcon />}
-                />
-                <BottomNavigationAction
-                    label="Favorites"
-                    value="favorites"
-                    icon={<FavoriteIcon />}
-                />
-
-                <BottomNavigationAction
-                    label="Add"
-                    value="add"
-                    icon={<AddCircleIcon />}
-                />
-                <BottomNavigationAction
-                    label="Nearby"
-                    value="nearby"
-                    icon={<LocationOnIcon />}
-                />
-                <BottomNavigationAction
-                    label="Person"
-                    value="person"
-                    icon={<PersonIcon />}
-                />
-            </BottomNavigation>
         </html>
     );
 }
