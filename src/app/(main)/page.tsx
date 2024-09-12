@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState, Suspense } from "react";
-import axios from "axios";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Avatar, Typography } from "@mui/material";
+import { getShopList } from "../api/shop/getShopList";
 
 const Home = () => {
     const [position, setPosition] = useState({
@@ -38,16 +38,9 @@ const Home = () => {
     }, []); // 空配列を指定しているので、このエフェクトは初回レンダー時に一度だけ実行される
 
     useEffect(() => {
-        const getShopList = async () => {
-            if (position.latitude !== 0 && position.longitude !== 0) {
-                const url = `${process.env.NEXT_PUBLIC_URL}?lat=${position.latitude}&lng=${position.longitude}`;
-                const res = await axios.get(url);
-                console.log(res);
-                setShopList(res.data); // データを保存
-            }
-        };
-
-        getShopList();
+        getShopList(position.latitude, position.longitude).then((res) => {
+            setShopList(res.data); // データを保存
+        });
     }, [position]); // positionが更新されるたびにgetShopListを実行
 
     return (
