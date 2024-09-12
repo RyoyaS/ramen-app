@@ -12,7 +12,13 @@ const Home = () => {
         longitude: 0,
     });
 
-    const [shopList, setShopList] = useState([]);
+    interface Shop {
+        id: string;
+        photo: { pc: { l: string } };
+        name: string;
+    }
+
+    const [shopList, setShopList] = useState<Shop[]>([]);
 
     useEffect(() => {
         const getCurrentPosition = () => {
