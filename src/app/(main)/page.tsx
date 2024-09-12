@@ -33,7 +33,7 @@ const Home = () => {
     useEffect(() => {
         const getShopList = async () => {
             if (position.latitude !== 0 && position.longitude !== 0) {
-                const url = `http://localhost:3001/?lat=${position.latitude}&lng=${position.longitude}`;
+                const url = `${process.env.URL}?lat=${position.latitude}&lng=${position.longitude}`;
                 const res = await axios.get(url);
                 console.log(res);
                 setShopList(res.data); // データを保存
