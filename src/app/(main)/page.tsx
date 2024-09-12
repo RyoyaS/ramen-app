@@ -16,6 +16,7 @@ const Home = () => {
         id: string;
         photo: { pc: { l: string } };
         name: string;
+        address: string;
     }
 
     const [shopList, setShopList] = useState<Shop[]>([]);
